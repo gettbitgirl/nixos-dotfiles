@@ -1,0 +1,6 @@
+{
+  "gettbit@girlcomputer" = [
+    ../.
+    ./girlcomputer
+  ];
+}
