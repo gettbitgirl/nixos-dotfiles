@@ -31,8 +31,8 @@
   (fluent-icon-theme.override {
     colorVariants = [ "red" ];
   })
-  darkly-qt5
-  darkly
+  #darkly-qt5
+  #darkly
   inputs.kwin-effects-better-blur-dx.packages.${pkgs.system}.default
   #inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
