@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "uas" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -19,22 +19,28 @@
       options = [ "subvol=root@nixos" ];
     };
 
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/1a34cb38-67ff-4414-9293-4bb5792b1487";
-      fsType = "btrfs";
-      options = [ "subvol=home@nixos" ];
-    };
-
   fileSystems."/nix" =
     { device = "/dev/disk/by-uuid/1a34cb38-67ff-4414-9293-4bb5792b1487";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
     };
 
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/1a34cb38-67ff-4414-9293-4bb5792b1487";
+      fsType = "btrfs";
+      options = [ "subvol=home@nixos" ];
+    };
+
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/9469-6A04";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+  fileSystems."/swap" =
+    { device = "/dev/disk/by-uuid/1a34cb38-67ff-4414-9293-4bb5792b1487";
+      fsType = "btrfs";
+      options = [ "subvol=swap@nixos" ];
     };
 
   swapDevices = [ ];
